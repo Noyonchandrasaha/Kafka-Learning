@@ -18,13 +18,13 @@ def delivery_report(err, msg):
 
 data = {
     "id": str(uuid.uuid4()),
-    "name": "test",
+    "name": "noyon",
     "age": 26,
     "city": "New York"
 }
 
 value = json.dumps(data).encode("utf-8")
 
-producer.produce("UserCreated", value=value, callback=delivery_report)
+producer.produce("UserCreated", key = str(uuid.uuid4()).encode('utf-8'), value=value, callback=delivery_report)
 
 producer.flush()
